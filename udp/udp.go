@@ -39,7 +39,7 @@ func (p *UDP) Marshal() []byte {
 	p.Checksum = checksum(data)
 	binary.BigEndian.PutUint16(data[18:20], p.Checksum)
 
-	return data
+	return data[12:]
 }
 
 func checksum(msg []byte) uint16 {
