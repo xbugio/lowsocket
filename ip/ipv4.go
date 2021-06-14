@@ -37,7 +37,7 @@ func checksum(msg []byte) int {
 	}
 
 	for i := 0; i < msgLen; i += 2 {
-		sum += int(binary.BigEndian.Uint16(msg[i : i+1]))
+		sum += int(binary.BigEndian.Uint16(msg[i : i+2]))
 	}
 
 	for sum > 0xffff {
