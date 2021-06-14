@@ -180,7 +180,7 @@ func (c *Conn) Sendto(p []byte, to net.HardwareAddr) (err error) {
 	linkAddr := &unix.SockaddrLinklayer{
 		Ifindex:  c.intf.Index,
 		Halen:    uint8(len(to)),
-		Protocol: c.proto,
+		Protocol: htons(c.proto),
 	}
 	if linkAddr.Halen > 0 {
 		copy(linkAddr.Addr[:], to)
