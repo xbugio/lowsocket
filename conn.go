@@ -26,6 +26,8 @@ const (
 
 var (
 	ErrNotSupported = errors.New("not supported")
+	// BroadcastHardwareAddress ff:ff:ff:ff:ff:ff
+	BroadcastHardwareAddress = net.HardwareAddr{0xff, 0xff, 0xff, 0xff, 0xff, 0xff}
 )
 
 func htons(data uint16) uint16 { return data<<8 | data>>8 }

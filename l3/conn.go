@@ -17,6 +17,10 @@ const (
 	ETH_P_ARP = lowsocket.ETH_P_ARP
 )
 
+var (
+	BroadcastHardwareAddress = lowsocket.BroadcastHardwareAddress
+)
+
 func NewConn(ifname string, proto uint16) (*Conn, error) {
 	lc, err := lowsocket.NewConn(ifname, unix.SOCK_DGRAM, proto)
 	if err != nil {
