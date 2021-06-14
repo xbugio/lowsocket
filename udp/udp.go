@@ -18,6 +18,7 @@ type UDP struct {
 func (p *UDP) Marshal() []byte {
 
 	p.Checksum = 0
+	p.Len = uint16(8 + len(p.Payload))
 
 	// 20 fake header + 8 udp header + payloadlen
 	data := make([]byte, 12+8+len(p.Payload))
@@ -26,7 +27,7 @@ func (p *UDP) Marshal() []byte {
 	copy(data[0:4], p.SrcIP.To4())
 	copy(data[4:8], p.DstIP.To4())
 	data[8], data[9] = 0x00, 0x11
-	binary.BigEndian.PutUint16(data[10:12], uint16(8+len(p.Payload)))
+	binary.BigEndian.PutUint16(data[10:12], p.Len)
 
 	// udp header
 	binary.BigEndian.PutUint16(data[12:14], p.SrcPort)
